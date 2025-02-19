@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Hello World!!</title>
+    <title>PDF Text Extractor</title>
 </head>
 <body>
-    Test Page
-    <p th:text="${message}"></p>
+    <h1>PDF Text Extractor</h1>
+    <form th:action="@{/hello}" method="post" enctype="multipart/form-data">
+        <label for="pdfFile">PDF File:</label>
+        <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" />
+        <br />
+        <label for="pageNumbers">Page Numbers (comma-separated):</label>
+        <input type="text" id="pageNumbers" name="pageNumbers" />
+        <br />
+        <label for="replacements">Replacements (old=new;old=new;...):</label>
+        <input type="text" id="replacements" name="replacements" />
+        <br />
+        <label for="delimiterRegex">Delimiter Regex:</label>
+        <input type="text" id="delimiterRegex" name="delimiterRegex" value="\\s+" />
+        <br />
+        <label for="newDelimiter">New Delimiter:</label>
+        <input type="text" id="newDelimiter" name="newDelimiter" value="," />
+        <br />
+        <label for="divisor">Divisor:</label>
+        <input type="number" id="divisor" name="divisor" value="1" />
+        <br />
+        <button type="submit">Extract and Convert Text</button>
+    </form>
 </body>
 </html>
