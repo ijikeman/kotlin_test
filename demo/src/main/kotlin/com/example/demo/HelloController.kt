@@ -58,7 +58,7 @@ class HelloController {
         //model.addAttribute("extractedText", extractedText)
         //model.addAttribute("extractedText", convertedText)
         model.addAttribute("extractedText", csvText)
-        return "hello"
+        return "result"
     }
 
     private fun extractTextFromPdf(pdfFile: MultipartFile, pageNumbers: String): String {
