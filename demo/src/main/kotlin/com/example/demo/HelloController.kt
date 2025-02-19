@@ -29,6 +29,7 @@ class HelloController {
         @RequestParam("delimiterRegex") delimiterRegex: String, // 追加
         @RequestParam("newDelimiter") newDelimiter: String, // 追加
         @RequestParam("divisor") divisor: Int, // 追加
+        @RequestParam("removeLinesStartingWith") removeLinesStartingWith: String?, // 追加
         model: Model
     ): String {
         val extractedText = try {
@@ -38,6 +39,7 @@ class HelloController {
         }
 
         val converter = StringConverter()
+        var convertedText: String = ""
 
         if (replacements.isNotBlank()) { // replacementsが空でない場合に処理
             replacements.split(";").forEach { replacement ->
@@ -45,7 +47,14 @@ class HelloController {
                 converter.addReplacement(parts[0], parts[1])
             }
         }
-        var convertedText = converter.convert(extractedText)
+        convertedText = converter.convert(extractedText)
+
+        // 行を削除
+        removeLinesStartingWith?.let { prefix ->  // removeLinesStartingWith が null でない場合
+            if (prefix.isNotBlank()) { // さらに、prefix が空文字列でない場合
+                convertedText = converter.removeLinesStartingWith(convertedText, prefix)
+            }
+        }
 
         // 数字を割る
         if (divisor != 1) {

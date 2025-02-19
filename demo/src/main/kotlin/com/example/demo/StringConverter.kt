@@ -36,4 +36,10 @@ class StringConverter {
             } ?: line
         }
     }
+
+    fun removeLinesStartingWith(text: String, target: String): String {
+        return text.split("\n")
+            .filterNot { it.contains(target) } // targetが含まれている行を削除
+            .joinToString("\n")
+    }
 }
