@@ -9,22 +9,22 @@
         <label for="pdfFile">PDF File:</label>
         <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" />
         <br />
-        <label for="pageNumbers">Page Numbers (comma-separated):</label>
+        <label for="pageNumbers">ページ番号(,区切りで入力):</label>
         <input type="text" id="pageNumbers" name="pageNumbers" />
         <br />
-        <label for="replacements">Replacements (old=new;old=new;...):</label>
+        <label for="replacements">文字列置換(;区切りで入力)(oldStr=newStr;oldStr=newStr;...):</label>
         <input type="text" id="replacements" name="replacements" />
         <br />
-        <label for="delimiterRegex">Delimiter Regex:</label>
-        <input type="text" id="delimiterRegex" name="delimiterRegex" value="\\s+" />
+        <label for="delimiterRegex">CSV変換対象文字:</label>
+        <input type="text" id="delimiterRegex" name="delimiterRegex" value="\s+" />
         <br />
-        <label for="newDelimiter">New Delimiter:</label>
+        <label for="newDelimiter">CSV変換後文字:</label>
         <input type="text" id="newDelimiter" name="newDelimiter" value="," />
         <br />
-        <label for="divisor">Divisor:</label>
+        <label for="divisor">数値単位の変更(千円 > 百万):</label>
         <input type="number" id="divisor" name="divisor" value="1" />
         <br />
-        <label for="removeLinesStartingWith">Remove Lines Starting With:</label>
+        <label for="removeLinesStartingWith">先頭一致行の削除(,区切りで入力):</label>
         <input type="text" id="removeLinesStartingWith" name="removeLinesStartingWith" />
         <br />
         <button type="submit">Extract and Convert Text</button>

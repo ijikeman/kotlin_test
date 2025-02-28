@@ -2,11 +2,13 @@ package com.example.demo
 
 class StringConverter {
     private val replacements = mutableMapOf<String, String>()
-
+    
+    // 文字列の置換を追加する
     fun addReplacement(oldString: String, newString: String) {
         replacements[oldString] = newString
     }
 
+    // 文字列を置換する
     fun convert(text: String): String {
         var result = text
         for ((oldString, newSTring) in replacements) {
@@ -15,6 +17,7 @@ class StringConverter {
         return result
     }
 
+    // テキストをCSV形式に変換する
     fun convertToCsv(text: String, delimiterRegex: String, newDelimiter: String): String {
         val lines = text.split("\n")
         val convertedLines = lines.map { line ->
@@ -23,6 +26,7 @@ class StringConverter {
         return convertedLines.joinToString("\n")
     }
 
+    // 数字を指定した除数で割る
     fun divideNumbers(text: String, divisor: Int): String {
         val pattern = Regex("^(.+)(\\s+(-?\\d+)\\s+(-?\\d+))$") // グループ分けを修正
         return text.split("\n").joinToString("\n") { line ->
@@ -37,9 +41,11 @@ class StringConverter {
         }
     }
 
-    fun removeLinesStartingWith(text: String, target: String): String {
+    // 特定の文字列で始まる行を削除する
+    fun removeLinesStartingWith(text: String, targets: String): String {
+        val targetList = targets.split(",")
         return text.split("\n")
-            .filterNot { it.contains(target) } // targetが含まれている行を削除
+            .filterNot { line -> targetList.any { target -> line.contains(target) } }
             .joinToString("\n")
     }
 }
